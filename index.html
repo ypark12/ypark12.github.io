@@ -1,171 +1,59 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>demo</title>
-        <link rel="stylesheet" href="https://mooozi.github.io/lectures/css/reset.css">
-        <link rel="stylesheet" href="https://mooozi.github.io/lectures/css/font.css">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <style>
-            /* header */
-            /* --------------------------------------------------------------------------- */
-            #header > h1 {
-                font-weight: 900;
-                font-size: 2.4em;
-                line-height: 80px;
-                text-shadow: 0 0 2px black;
-                padding: 0 0.8em;
-            }
 
-            /* navigation */
-            /* --------------------------------------------------------------------------- */
-            #nav {
-                background-color: #555;
-                box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.4);
-                margin-bottom: 5px; /* box-shadow 그림자가 밑 컨텐츠 영역과 겹치지 않기 위해 */
-            }
-            #nav::after { content: ""; display: block; clear: both; }
-            #gnb-left { float: left; }
-            #gnb-right { float: right; }
+<head>
+    <meta charset="utf-8">
+    <title>HW1</title>
+    <link rel="stylesheet" href="https://mooozi.github.io/lectures/css/reset.css">
+    <link rel="stylesheet" href="https://mooozi.github.io/lectures/css/font.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        #content {
+            max-width: 500px;
+            margin: auto;
+            background: white;
+            padding: 10px;
+        }
 
-            /* 메뉴 바의 메뉴 항목들을 나란히 배치 */
-            #nav > ul > li { float: left; }
+        /* header */
+        /* --------------------------------------------------------------------------- */
+        #header>h1 {
+            font-weight: 900;
+            font-size: 2.4em;
+            line-height: 80px;
+            text-shadow: 0 0 2px black;
+            text-align: center;
+            /* padding: 0 0.8em; */
+        }
 
-            #nav > ul > li > a {
-                /* 메뉴 바의 a 요소는 버튼 형태로 표현 */
-                display: block;
-                padding: 1em 2em;
+        #list>li{
+            margin: 10px 0 10px 0;
+        }
+    </style>
+</head>
 
-                text-decoration: none;
-                color: white;
-
-                text-shadow: 0 0 2px black;
-            }
-
-            #nav > ul > li > a:hover { background-color: black; }
-
-            /* sidebar */
-            /* --------------------------------------------------------------------------- */
-            #container { overflow: hidden; }
-            #container::after { content: ""; display: block; clear: both; }
-
-            #sidebar { 
-                float: left;
-
-                width: 200px;
-                padding-top: 1em;
-                margin-right: 10px;
-            }
-            #lnb > li > a {
-                display: block;
-                padding: 0.4em 1em;
-
-                text-decoration: none;
-                color: black;
-            }
-            #lnb > li > a:hover { background-color: #ccc; }
-
-            /* content */
-            /* --------------------------------------------------------------------------- */
-            #wrap { 
-                float: left;
-                width: 100%;
-                margin-right: -210px;
-            }
-            
-            #content {
-                float: left;
-                padding: 1.5em;
-                border-left: 1px solid black;
-
-                margin-right: 210px;
-            }
-            #content > h2 {
-                font-size: 1.6em;
-                font-weight: bold;
-                margin-bottom: 0.8em;
-            }
-            #content > p {
-                line-height: 1.5;
-                margin-top: 1em; /* margin을 줌으로서 paragraphs 사이 margin을 준다 */
-            }
-
-            /* footer */
-            /* --------------------------------------------------------------------------- */
-            #footer {
-                background-color: #aaa;
-                padding: 1.5em;
-                text-align: right;
-                font-size: 0.86em;
-                font-style: italic;
-            }
-        </style>
-    </head>
-    <body>
+<body>
+    <div id="content">
         <header id="header">
-            <h1>Fluid Layout</h1>
+            <h1>HW 1</h1>
         </header>
 
-        <nav id="nav">
-            <ul id="gnb-left">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#html">HTML</a></li>
-                <li><a href="#css">CSS</a></li>
-                <li><a href="#javascript">JavaScript</a></li>
-                <li><a href="#jquery">jQuery</a></li>
-            </ul>
-            <ul id="gnb-right">
-                <li><a href="#signin">Sign in</a></li>
-                <li><a href="#signup">Sign up</a></li>
-            </ul>
-        </nav>
-
         <div id="container">
-            <aside id="sidebar">
-                <ul id="lnb">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#html">HTML</a></li>
-                    <li><a href="#css">CSS</a></li>
-                    <li><a href="#javascript">JavaScript</a></li>
-                    <li><a href="#jquery">jQuery</a></li>
-                </ul>
-            </aside>
-            
-            <div id="wrap">
-                <article id="content">
-                    <h2>Lorem ipsum dolor sit amat</h2>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ullamcorper enim dui,
-                            at condimentum purus hendrerit eget. Aenean laoreet tempus placerat. Ut sollicitudin orci
-                            sed elementum blandit. Sed rutrum sagittis mattis. Ut molestie scelerisque venenatis.
-                            Nullam ac feugiat velit. Aenean vel feugiat sapien, quis placerat urna. Pellentesque in
-                            ornare nibh. Nunc tincidunt interdum magna. Fusce laoreet nisi ullamcorper dui venenatis,
-                            a cursus quam varius.
-                        </p>
-    
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus in tellus ornare, rutrum
-                            est quis, dictum nisi. Mauris convallis lacus at ex sollicitudin sollicitudin. Phasellus
-                            commodo non ante id aliquam. Integer ut ex tellus. Cras at ex venenatis augue laoreet porta.
-                            Donec eget felis lacinia purus facilisis hendrerit. Morbi fermentum massa ultricies condimentum
-                            dignissim.
-                        </p>
-    
-                        <p>
-                            Integer maximus neque nisi, in semper orci placerat quis. Cras mollis ultrices mauris non porta.
-                            Nam enim dolor, vulputate at quam vitae, porttitor mollis dui. Donec facilisis cursus volutpat.
-                            Nam non suscipit ante. Duis feugiat aliquam turpis, at efficitur lacus rutrum sed. Ut et felis
-                            a risus gravida gravida. Phasellus elementum, felis sed pharetra maximus, libero mi suscipit
-                            tellus, a tempor ante mauris mattis lectus. Fusce sollicitudin lorem id nibh laoreet, nec
-                            consectetur turpis dapibus. Nam erat nulla, sagittis sed luctus vel, suscipit ut tellus.
-                        </p>
-                </article>
-            </div> <!-- /#wrap-->
+            <ul id="list">
+                <li>My name is: Abe Park.</li>
+                <li>My major is: Computer Science.</li>
+                <li>My IP address is: 192.168.35.232.</li>
+                <li>I grew up in Northbrook, IL.</li>
+                <li>Something no one would expect about me: I finished military service in Korea.</li>
+                <li>My favorite place: </li>
+            </ul>
+            <iframe width="500" height="720" src="https://www.youtube.com/embed/C_1P5ZvRQes">
+            </iframe>
+        </div> <!-- /#container -->
 
-        </div> <!-- /#container-->
+    </div> <!-- /#content-->
 
-        <footer id="footer">
-            &copy; 2014-2016 Fluid Layout.
-        </footer>
-    </body>
+
+</body>
+
 </html>
