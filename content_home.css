@@ -1,0 +1,25 @@
+#home {
+    padding-top: 20px;
+    padding-left: 60px;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 80px;
+}
+
+@media (max-width: 952px) {
+    #home {
+        padding-left: 20px;
+    }
+    #home>h1 {
+        font-size: 60px;
+    }
+}
+
+#home-background {
+    background: url(home-background.jpg) no-repeat;
+    background-size: cover;
+    height: calc(100vh - 80px);
+}
+
+.category-header {
+    height: 200px;
+}

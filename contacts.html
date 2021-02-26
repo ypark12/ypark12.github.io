@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="structure.css">
     <link rel="stylesheet" href="mobile.css">
     <link rel="stylesheet" href="navigation.css">
-    <link rel="stylesheet" href="content_home.css">
+    <link rel="stylesheet" href="content_contacts.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -25,6 +25,7 @@
 
 <body>
     <div id="container">
+        <!-- #navigation -->
         <nav>
             <input type="checkbox" id="check">
             <label for="check" class="checkbtn">
@@ -32,24 +33,31 @@
             </label>
             <label class="logo"><a href="index.html">Dream Giver</a></label>
             <ul>
-                <li><a class="active" href="index.html">Home</a></li>
-                <li><a href="contacts.html">Contacts</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a class="active" href="contacts.html">Contacts</a></li>
                 <li><a href="services.html">Services</a></li>
             </ul>
         </nav>
+        <!-- /#navigation -->
+
 
         <!-- #content -->
         <div id="content">
-            <section id="home-background">
-                <article class="col-9" id="home">
-                    <h1>Help students bring their dreams to life.</h1>
+            <section>
+                <article class="col-6" id="contacts">
+                    <h1>Chief Executive Officer</h1>
+                    <img src="AbePark.JPG" alt="AbePark" width="200" height="300">
+                    <p>Name: Abe Park</p>
+                    <p>Emai: yangsun.park@tufts.edu</p>
+                    <p>Phone: (+82) 10 2023 4682</p>
                 </article>
+
             </section>
-            <!--/.col-9 home -->
+            <!--/.col-6 contacts -->
         </div>
         <!-- /#content-->
 
-        <footer id="footer">
+        <footer id="footer" style="margin-top: 200px;">
             <p>&copy; Tufts 2021 Spring COMP20</p>
         </footer>
     </div>
