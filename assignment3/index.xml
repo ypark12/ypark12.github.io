@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/css" href="songListDesign.css"?>
+<!DOCTYPE songlist [
+<!ELEMENT songlist (heading,square)>
+<!ELEMENT heading (#PCDATA)>
+<!ELEMENT square (artist,title,year,genre)>
+<!ELEMENT artist (#PCDATA)>
+<!ELEMENT title (#PCDATA)>
+<!ELEMENT year (#PCDATA)>
+<!ELEMENT genre (#PCDATA)>
+]>
+<songlist>
+    <heading>Abe's Playlist</heading>
+    <square>
+        <song>
+            <artist>The Beatles</artist>
+            <title>Hey Jude</title>
+            <year>1968</year>
+            <genre>Rock</genre>
+        </song>
+    </square>
+
+    <square>
+        <song>
+            <artist>The Beatles</artist>
+            <title>Come Together</title>
+            <year>1969</year>
+            <genre>Rock</genre>
+        </song>
+    </square>
+
+    <square>
+        <song>
+            <artist>Muse</artist>
+            <title>Time is Running Out</title>
+            <year>2003</year>
+            <genre>Rock</genre>
+        </song>
+    </square>
+
+    <square>
+        <song>
+            <artist>Kanye West</artist>
+            <title>I Wonder</title>
+            <year>2007</year>
+            <genre>Hip Hop</genre>
+        </song>
+    </square>
+
+    <square>
+        <song>
+            <artist>Kanye West</artist>
+            <title>Stronger</title>
+            <year>2007</year>
+            <genre>Hip Hop</genre>
+        </song>
+    </square>
+
+    <square>
+        <song>
+            <artist>Jay Z</artist>
+            <title>Empire State Of Mind</title>
+            <year>2009</year>
+            <genre>Hip Hop</genre>
+        </song>
+    </square>
+
+    <square>
+        <song>
+            <artist>BTS</artist>
+            <title>Fake Love</title>
+            <year>2018</year>
+            <genre>KPOP</genre>
+        </song>
+    </square>
+
+    <square>
+        <song>
+            <artist>BTS</artist>
+            <title>Dynamite</title>
+            <year>2020</year>
+            <genre>KPOP</genre>
+        </song>
+    </square>
+
+    <square>
+        <song>
+            <artist>BTS</artist>
+            <title>Savage Love</title>
+            <year>2020</year>
+            <genre>KPOP</genre>
+        </song>
+    </square>
+
+    <square>
+        <song>
+            <artist>Blackpink</artist>
+            <title>How You Like That</title>
+            <year>2020</year>
+            <genre>KPOP</genre>
+        </song>
+    </square>
+</songlist>
