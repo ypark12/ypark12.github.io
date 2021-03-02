@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="https://mooozi.github.io/lectures/css/reset.css">
+    <link rel="stylesheet" href="https://mooozi.github.io/lectures/css/font.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="hotdog-design.css">
+</head>
+
+<body>
+    <h2 id="heading">Joe's Hotdogs</h2>
+
+    <div class="container">
+        <div class="column left">
+            <h2>Menu</h2>
+            <div class="item">
+                <ul class="text-inline">
+                    <li>Hotdogs</li>
+                    <li>$3.25</li>
+                </ul>
+
+                <ul class="input-inline">
+                    <li>Quantity: </li>
+                    <textarea id="hotdogs-quantity" disabled placeholder="0"></textarea>
+                </ul>
+                <button onclick="buy_hotdogs()">Get</button>
+            </div>
+            <!-- /item hotdogs -->
+
+            <div class="item">
+                <ul class="text-inline">
+                    <li>French Fries</li>
+                    <li>$2.00</li>
+                </ul>
+                <ul class="input-inline">
+                    <li>Quantity: </li>
+                    <textarea id="fries-quantity" disabled placeholder="0"></textarea>
+                </ul>
+                <button onclick="buy_fries()">Get</button>
+            </div>
+            <!-- /item fries -->
+
+            <div class="item">
+                <ul class="text-inline">
+                    <li>Drinks</li>
+                    <li>$1.50</li>
+                </ul>
+                <ul class="input-inline">
+                    <li>Quantity: </li>
+                    <textarea id="drinks-quantity" disabled placeholder="0"></textarea>
+                </ul>
+                <button onclick="buy_drinks()">Get</button>
+            </div>
+            <!-- /item drinks -->
+
+            <button onclick="submit_order()">Submit Order</button>
+
+        </div>
+        <!-- /column left -->
+
+        <div class="column right">
+            <h2>Current Order</h2>
+            <div class="receipt">
+                <ul class="input-inline">
+                    <li>Subtotal ($): </li>
+                    <textarea id="subtotal" disabled placeholder="0.00"></textarea>
+                </ul>
+
+                <ul class="input-inline">
+                    <li>Tax ($): </li>
+                    <textarea id="tax" disabled placeholder="0.00"></textarea>
+                </ul>
+
+                <ul class="input-inline">
+                    <li>Discount ($): </li>
+                    <textarea id="discount" disabled placeholder="0.00"></textarea>
+                </ul>
+
+                <ul class="input-inline">
+                    <li>Price ($): </li>
+                    <textarea id="price" disabled placeholder="0.00"></textarea>
+                </ul>
+            </div>
+
+            <h2>Total Orders</h2>
+            <div class="receipt">
+                <ul class="input-inline">
+                    <li>Total hotdogs ordered: </li>
+                    <textarea id="total-hotdogs" disabled placeholder="0"></textarea>
+                </ul>
+                <ul class="input-inline">
+                    <li>Total fries ordered: </li>
+                    <textarea id="total-fries" disabled placeholder="0"></textarea>
+                </ul>
+                <ul class="input-inline">
+                    <li>Total drinks ordered: </li>
+                    <textarea id="total-drinks" disabled placeholder="0"></textarea>
+                </ul>
+                <ul class="input-inline">
+                    <li>Total Price ($): </li>
+                    <textarea id="total-price" disabled placeholder="0.00"></textarea>
+                </ul>
+            </div>
+        </div>
+        <!-- /column right -->
+
+    </div>
+    <!-- /container -->
+
+    <script type="text/javascript">
+        function buy_hotdogs() {
+            do {
+                var quantity = prompt("How many hotdogs do you want?", "");
+            } while (isNaN(quantity) || quantity < 0);
+            if (quantity != "") {
+                var toInt = parseInt(quantity);
+                document.getElementById("hotdogs-quantity").innerHTML = quantity;
+                calculate_price();
+            }
+        }
+
+        function buy_fries() {
+            do {
+                var quantity = prompt("How many fries do you want?", "");
+            } while (isNaN(quantity) || quantity < 0);
+            if (quantity != "") {
+                var toInt = parseInt(quantity);
+                document.getElementById("fries-quantity").innerHTML = quantity;
+                calculate_price();
+            }
+        }
+
+        function buy_drinks() {
+            do {
+                var quantity = prompt("How many drinks do you want?", "");
+            } while (isNaN(quantity) || quantity < 0);
+            if (quantity != "") {
+                var toInt = parseInt(quantity);
+                document.getElementById("drinks-quantity").innerHTML = quantity;
+                calculate_price();
+            }
+        }
+
+        function calculate_price() {
+            var q_hotdogs = parseInt(document.getElementById("hotdogs-quantity").value) || 0;
+            var q_fries = parseInt(document.getElementById("fries-quantity").value) || 0;
+            var q_drinks = parseInt(document.getElementById("drinks-quantity").value) || 0;
+
+            var subtotal = q_hotdogs * 3.25 + q_fries * 2.00 + q_drinks * 1.50;
+            var tax = subtotal * 0.0625;
+            document.getElementById("subtotal").innerHTML = subtotal.toFixed(2);
+            document.getElementById("tax").innerHTML = tax.toFixed(2);
+            if (subtotal >= 20) {
+                var discount = subtotal * .1;
+                document.getElementById("discount").innerHTML = discount.toFixed(2);
+                document.getElementById("price").innerHTML = (subtotal + tax - discount).toFixed(2);
+            } else {
+                var discount = 0;
+                document.getElementById("discount").innerHTML = discount.toFixed(2);
+                document.getElementById("price").innerHTML = (subtotal + tax).toFixed(2);
+            }
+        }
+
+        function reset() {
+            var num = 0;
+            document.getElementById("hotdogs-quantity").innerHTML = 0;
+            document.getElementById("fries-quantity").innerHTML = 0;
+            document.getElementById("drinks-quantity").innerHTML = 0;
+            document.getElementById("subtotal").innerHTML = num.toFixed(2);
+            document.getElementById("tax").innerHTML = num.toFixed(2);
+            document.getElementById("discount").innerHTML = num.toFixed(2);
+            document.getElementById("price").innerHTML = num.toFixed(2);
+        }
+
+        var total_hotdogs = 0;
+        var total_fries = 0;
+        var total_drinks = 0;
+        var net_price = 0;
+
+        function submit_order() {
+            var q_hotdogs = parseInt(document.getElementById("hotdogs-quantity").value) || 0;
+            var q_fries = parseInt(document.getElementById("fries-quantity").value) || 0;
+            var q_drinks = parseInt(document.getElementById("drinks-quantity").value) || 0;
+            var price = parseFloat(document.getElementById("price").value) || 0;
+
+            total_hotdogs = total_hotdogs + q_hotdogs;
+            total_fries = total_fries + q_fries;
+            total_drinks = total_drinks + q_drinks;
+            net_price = net_price + price;
+
+            document.getElementById("total-hotdogs").innerHTML = total_hotdogs;
+            document.getElementById("total-fries").innerHTML = total_fries;
+            document.getElementById("total-drinks").innerHTML = total_drinks;
+            document.getElementById("total-price").innerHTML = net_price.toFixed(2);
+
+            reset();
+        }
+    </script>
+
+</body>
+
+</html>
