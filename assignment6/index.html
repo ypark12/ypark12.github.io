@@ -35,12 +35,14 @@
 
             num1_divisors, sum1 = factor_num(num1, num1_divisors, sum1);
             num2_divisors, sum2 = factor_num(num2, num2_divisors, sum2);
-
-            print_result(validate_amicability(sum1, sum2), num1, num2);
+            
+            pop_logistics(int_to_string(num1_divisors), int_to_string(num2_divisors), num1, num2, sum1, sum2);
+            print_result(validate_amicability(sum1, sum2, num1, num2), num1, num2);
         }
 
         function factor_num(num, divisors, sum) {
             for (i = 1; i <= num; i++) {
+                if (i == num) continue;
                 if (num % i == 0)
                 {
                     divisors.push(i);
@@ -50,9 +52,17 @@
             return divisors, sum;
         }
 
-        function validate_amicability(sum1, sum2) {
-            if (sum1 == sum2) return true;
+        function validate_amicability(sum1, sum2, num1, num2) {
+            if (sum1 == num2 && sum2 == num1) return true;
             else return false;
+        }
+
+        function pop_logistics(str_num1_divisors, str_num2_divisors, num1, num2, sum1, sum2) {
+            alert(num1 + ": " + str_num1_divisors + " sum to " + sum1 + "\n" + num2 + ": " + str_num2_divisors  + " sum to " + sum2);
+        }
+
+        function int_to_string(int_arr) {
+            return "[ " + int_arr.join(" ") + " ]";
         }
 
         function print_result(flag, num1, num2) {
