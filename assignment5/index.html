@@ -28,6 +28,10 @@
             <p id="random-lucky-number">Random lucky number</p>
         </div>
 
+        <div id="prize-box" class="div-box">
+            <p id="prize">Prize</p>
+        </div>
+
     </div>
     
 
@@ -36,8 +40,11 @@
         var input_luckyNumber = -1;
         var random_winningNumbers = [];
         var random_luckyNumber = -1;
+        var count_winningNumbers = 0;
+        var flag_luckyNumber = false;
 
-        // Generate random lottery numbers when the page is loaded
+        /* ------------------------------------------------------------------------------------- */
+        // Onload: Generate random lottery numbers
         window.onload = function() {
             // Random winning numbers
             for (i = 0; i < 5; i++) {
@@ -59,12 +66,15 @@
                 if (flag) { document.getElementById("random-lucky-number").innerHTML = random_luckyNumber; }
             }
 
-
             
         }
 
-        
+        function getRandomInt(bound) {
+            return parseInt(Math.floor(Math.random() * bound) + 1, 10);
+        }
 
+        /* ------------------------------------------------------------------------------------- */
+        // Prompt user to enter winning numbers
         function get_winning_numbers() {
             var input = prompt("Enter the winning numbers.", "");
 
@@ -74,6 +84,9 @@
 
             input_winningNumbers.sort(function(a, b) { return a-b; });
             document.getElementById("input-winning-numbers").innerHTML = input_winningNumbers;
+
+            count_winning_numbers();
+            determine_prize();
         }
 
         function get_lucky_number() {
@@ -81,8 +94,14 @@
 
             input_luckyNumber = parseInt(input);
             document.getElementById("input-lucky-number").innerHTML = input_luckyNumber;
+
+            flag_lucky_number();
+            determine_prize();
         }
 
+
+        /* ------------------------------------------------------------------------------------- */
+        // Generate a set of random numbers with no repeats (with no duplicates)
         function check_duplicate(arr, num) {
             for (i = 0; i < arr.length; i++) {
                 if (num == arr[i]) return false;
@@ -90,8 +109,43 @@
             return true;
         }
 
-        function getRandomInt(max) {
-            return parseInt(Math.floor(Math.random() * max) + 1, 10);
+        function count_winning_numbers() {
+            // In case we have to consider duplicates in the set of random numbers (with repeats), 
+            // so to remove duplicates
+            let unique = [...new Set(random_winningNumbers)];
+            count_winningNumbers = 0;
+            for (i = 0; i < 5; i++) {
+                if (input_winningNumbers.includes(unique[i])) {
+                    count_winningNumbers += 1;
+                }
+            }
+        }
+
+        function flag_lucky_number() {
+            flag_luckyNumber = false;
+            if (random_luckyNumber == input_luckyNumber) flag_luckyNumber = true;
+        }
+
+
+        /* ------------------------------------------------------------------------------------- */
+        function determine_prize() {
+            console.log(count_winningNumbers);
+            console.log(flag_luckyNumber);
+            
+            if (flag_luckyNumber) {
+                if (count_winningNumbers == 5) document.getElementById("prize").innerHTML = "$7,000 a WEEK for LIFE";
+                else if (count_winningNumbers == 4) document.getElementById("prize").innerHTML = "$5,000";
+                else if (count_winningNumbers == 3) document.getElementById("prize").innerHTML = "$150";
+                else if (count_winningNumbers == 2) document.getElementById("prize").innerHTML = "$25";
+                else if (count_winningNumbers == 1) document.getElementById("prize").innerHTML = "$6";
+                else document.getElementById("prize").innerHTML = "NO PRIZE";
+            } else {
+                if (count_winningNumbers == 5) document.getElementById("prize").innerHTML = "$25,000 a YEAR for LIFE";
+                else if (count_winningNumbers == 4) document.getElementById("prize").innerHTML = "$200";
+                else if (count_winningNumbers == 3) document.getElementById("prize").innerHTML = "$20";
+                else if (count_winningNumbers == 2) document.getElementById("prize").innerHTML = "$3";
+                else document.getElementById("prize").innerHTML = "NO PRIZE";
+            }
         }
     </script>
 
