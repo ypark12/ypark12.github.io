@@ -12,12 +12,56 @@
 
 <body>
     <div id="container">
-
+        <h1 id="heading">Amicable numbers</h1>
+        <form>
+            Num1: <input type="text" id="num1"></input>
+            Num2: <input type="text" id="num2"></input>
+            <input type="button" value="Validate" onclick="validate_numbers()"></input>
+        </form>
+        <p id="result">Result</p>
     </div>
     
 
     <script type="text/javascript">
+        function validate_numbers() {
+            var num1 = parseInt(document.getElementById("num1").value, 10);
+            var num2 = parseInt(document.getElementById("num2").value, 10);
 
+            var num1_divisors = [];
+            var num2_divisors = [];
+            
+            var sum1 = 0;
+            var sum2 = 0;
+
+            num1_divisors, sum1 = factor_num(num1, num1_divisors, sum1);
+            num2_divisors, sum2 = factor_num(num2, num2_divisors, sum2);
+
+            print_result(validate_amicability(sum1, sum2), num1, num2);
+        }
+
+        function factor_num(num, divisors, sum) {
+            for (i = 1; i <= num; i++) {
+                if (num % i == 0)
+                {
+                    divisors.push(i);
+                    sum += i;
+                }
+            }
+            return divisors, sum;
+        }
+
+        function validate_amicability(sum1, sum2) {
+            if (sum1 == sum2) return true;
+            else return false;
+        }
+
+        function print_result(flag, num1, num2) {
+            if (flag) {
+                document.getElementById("result").innerHTML = "The numbers: " + num1 + " and " + num2 + " are amicable";
+            } else {
+                document.getElementById("result").innerHTML = "The numbers: " + num1 + " and " + num2 + " are not amicable";
+            }
+        }
     </script>
 
 </body>
