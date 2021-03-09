@@ -11,12 +11,88 @@
 </head>
 
 <body>
-    <h2 id="heading">Lottery</h2>
+    <div id="container">
+        <h1 id="heading">Lucky for Life</h1>
 
+        <button onclick="get_winning_numbers()" class="btn-user-input">Get winning numbers</button>
+
+        <button onclick="get_lucky_number()" class="btn-user-input">Get lucky number</button>
+
+        <div id="winning-lottery-box" class="div-box">
+            <p id="input-winning-numbers">Input winning numbers</p>
+            <p id="input-lucky-number">Input lucky number</p>
+        </div>
+
+        <div id="random-lottery-box" class="div-box">
+            <p id="random-winning-numbers">Random winning numbers</p>
+            <p id="random-lucky-number">Random lucky number</p>
+        </div>
+
+    </div>
     
 
     <script type="text/javascript">
+        var input_winningNumbers = new Array(5);
+        var input_luckyNumber = -1;
+        var random_winningNumbers = [];
+        var random_luckyNumber = -1;
+
+        // Generate random lottery numbers when the page is loaded
+        window.onload = function() {
+            // Random winning numbers
+            for (i = 0; i < 5; i++) {
+                flag = false;
+                while (!flag) {
+                    num = getRandomInt(48);
+                    flag = check_duplicate(random_winningNumbers, num);
+                    if (flag) { random_winningNumbers.push(num); }
+                }
+            }
+            random_winningNumbers.sort(function(a, b) { return a-b; });
+            document.getElementById("random-winning-numbers").innerHTML = random_winningNumbers;
+
+            // Random lucky number
+            flag = false;
+            while (!flag) {
+                random_luckyNumber = getRandomInt(18);
+                flag = check_duplicate(random_winningNumbers, random_luckyNumber);
+                if (flag) { document.getElementById("random-lucky-number").innerHTML = random_luckyNumber; }
+            }
+
+
+            
+        }
+
         
+
+        function get_winning_numbers() {
+            var input = prompt("Enter the winning numbers.", "");
+
+            input_winningNumbers = input.split(' ').map(function(item) {
+                return parseInt(item, 10);
+            });
+
+            input_winningNumbers.sort(function(a, b) { return a-b; });
+            document.getElementById("input-winning-numbers").innerHTML = input_winningNumbers;
+        }
+
+        function get_lucky_number() {
+            var input = prompt("Enter the lucky number.", "");
+
+            input_luckyNumber = parseInt(input);
+            document.getElementById("input-lucky-number").innerHTML = input_luckyNumber;
+        }
+
+        function check_duplicate(arr, num) {
+            for (i = 0; i < arr.length; i++) {
+                if (num == arr[i]) return false;
+            }
+            return true;
+        }
+
+        function getRandomInt(max) {
+            return parseInt(Math.floor(Math.random() * max) + 1, 10);
+        }
     </script>
 
 </body>
