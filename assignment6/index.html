@@ -13,12 +13,24 @@
 <body>
     <div id="container">
         <h1 id="heading">Amicable numbers</h1>
-        <form>
-            Num1: <input type="text" id="num1"></input>
-            Num2: <input type="text" id="num2"></input>
-            <input type="button" value="Validate" onclick="validate_numbers()"></input>
-        </form>
-        <p id="result">Result</p>
+        <div id="body" class="flex-container">
+            <form>
+                <div class="flex-container-inline">
+                    <div class="flex-container-column">
+                        <p class="number-heading">Number #1</p>
+                        <input type="text" id="num1" class="input-box"></input>
+                    </div> <!-- /flex-container-column -->
+
+                    <div class="flex-container-column">
+                        <p class="number-heading">Number #2</p>
+                        <input type="text" id="num2" class="input-box"></input>
+                    </div> <!-- /flex-container-column -->
+                    
+                </div> <!-- /flex-container-inline -->
+                <input type="button" value="Validate" onclick="validate_numbers()" id="validate-button"></input>
+            </form>
+            <p id="result"></p>
+        </div> <!-- /flex-container -->
     </div>
     
 
