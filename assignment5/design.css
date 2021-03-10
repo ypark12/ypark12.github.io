@@ -2,3 +2,26 @@
     box-sizing: border-box;
 }
 
+#heading {
+    padding: 20px 60px;
+    font-size: 4vw;
+    text-align: center;
+    font-weight: 700;
+    color: #000000;
+    margin: auto;
+}
+
+#container {
+    margin: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-user-input {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 20px;
+}

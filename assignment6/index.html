@@ -36,6 +36,8 @@
     
 
     <script type="text/javascript">
+        /* ------------------------------------------------------------------------------------- */
+        // main function that calls all other supplemntary functions needed for the downstream task
         function validate_numbers() {
             var num1 = parseInt(document.getElementById("num1").value, 10);
             var num2 = parseInt(document.getElementById("num2").value, 10);
@@ -53,6 +55,9 @@
             print_result(validate_amicability(sum1, sum2, num1, num2), num1, num2);
         }
 
+        /* ------------------------------------------------------------------------------------- */
+        // function that factors the given number into its divisors, pushes the factors in the array, 
+        // and acculumates the sum of all the divisors
         function factor_num(num, divisors, sum) {
             for (i = 1; i <= num; i++) {
                 if (i == num) continue;
@@ -65,19 +70,27 @@
             return divisors, sum;
         }
 
+        /* ------------------------------------------------------------------------------------- */
+        // boolean function that returns whether two numbers are amicable
         function validate_amicability(sum1, sum2, num1, num2) {
             if (sum1 == num2 && sum2 == num1) return true;
             else return false;
         }
 
+        /* ------------------------------------------------------------------------------------- */
+        // function that alerts the numeric logistics of the divisors of each number
         function pop_logistics(str_num1_divisors, str_num2_divisors, num1, num2, sum1, sum2) {
             alert(num1 + ": " + str_num1_divisors + " sum to " + sum1 + "\n" + num2 + ": " + str_num2_divisors  + " sum to " + sum2);
         }
 
+        /* ------------------------------------------------------------------------------------- */
+        // functino that converts an integer to string
         function int_to_string(int_arr) {
             return "[ " + int_arr.join(" ") + " ]";
         }
 
+        /* ------------------------------------------------------------------------------------- */
+        // function that prints results
         function print_result(flag, num1, num2) {
             if (flag) {
                 document.getElementById("result").innerHTML = "The numbers: " + num1 + " and " + num2 + " are amicable";
