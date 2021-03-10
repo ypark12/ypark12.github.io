@@ -70,9 +70,11 @@
                 if (flag) { break; }
             }
 
+            // Ask user for input
             get_winning_numbers();
             get_lucky_number();
 
+            // Styling
             fill_random_circles()
         }
 
@@ -159,6 +161,7 @@
 
 
         /* ------------------------------------------------------------------------------------- */
+        // Print prize result
         function determine_prize() {
             console.log(count_winningNumbers);
             console.log(flag_luckyNumber);
