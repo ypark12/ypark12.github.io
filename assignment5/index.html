@@ -14,20 +14,22 @@
 <body>
     <h1 id="heading">Lucky for Life</h1>
     <div id="container">
-        <p>Get your winning numbers</p>
-        <button onclick="get_winning_numbers()" class="btn-user-input" >Get winning numbers</button>
-        <p>Get your lucky number</p>
-        <button onclick="get_lucky_number()" class="btn-user-input">Get lucky number</button>
-
-        <div id="winning-lottery-box" class="div-box">
-            
-            <p id="input-winning-numbers">Input winning numbers</p>
-            <p id="input-lucky-number">Input lucky number</p>
+            <div id="input-lottery-box" class="flex-container-inline">
+            <div id="input-0" class="number-circle"></div>
+            <div id="input-1" class="number-circle"></div>
+            <div id="input-2" class="number-circle"></div>
+            <div id="input-3" class="number-circle"></div>
+            <div id="input-4" class="number-circle"></div>                
+            <div id="input-5" class="number-circle"></div>                
         </div>
 
-        <div id="random-lottery-box" class="div-box">
-            <p id="random-winning-numbers">Random winning numbers</p>
-            <p id="random-lucky-number">Random lucky number</p>
+        <div id="random-lottery-box" class="flex-container-inline">
+            <div id="random-0" class="number-circle"></div>
+            <div id="random-1" class="number-circle"></div>
+            <div id="random-2" class="number-circle"></div>
+            <div id="random-3" class="number-circle"></div>
+            <div id="random-4" class="number-circle"></div>                
+            <div id="random-5" class="number-circle"></div> 
         </div>
 
         <div id="prize-box" class="div-box">
@@ -48,6 +50,8 @@
         /* ------------------------------------------------------------------------------------- */
         // Onload: Generate random lottery numbers
         window.onload = function() {
+            get_winning_numbers();
+            get_lucky_number();
             // Random winning numbers
             for (i = 0; i < 5; i++) {
                 flag = false;
@@ -58,17 +62,16 @@
                 }
             }
             random_winningNumbers.sort(function(a, b) { return a-b; });
-            document.getElementById("random-winning-numbers").innerHTML = random_winningNumbers;
-
+            console.log(random_winningNumbers)
             // Random lucky number
             flag = false;
             while (!flag) {
                 random_luckyNumber = getRandomInt(18);
                 flag = check_duplicate(random_winningNumbers, random_luckyNumber);
-                if (flag) { document.getElementById("random-lucky-number").innerHTML = random_luckyNumber; }
+                if (flag) { break; }
             }
 
-            
+            fill_random_circles()
         }
 
         function getRandomInt(bound) {
@@ -85,22 +88,46 @@
             });
 
             input_winningNumbers.sort(function(a, b) { return a-b; });
-            document.getElementById("input-winning-numbers").innerHTML = input_winningNumbers;
 
             count_winning_numbers();
             determine_prize();
+
+            fill_input_winning_circles();
         }
 
         function get_lucky_number() {
             var input = prompt("Enter the lucky number.", "");
 
             input_luckyNumber = parseInt(input);
-            document.getElementById("input-lucky-number").innerHTML = input_luckyNumber;
 
             flag_lucky_number();
             determine_prize();
+
+            fill_input_lucky_circle();
+        }
+                
+        /* ------------------------------------------------------------------------------------- */
+        // Styling functions for lottery circles
+        function fill_input_winning_circles() {
+            document.getElementById("input-0").innerHTML = input_winningNumbers[0];
+            document.getElementById("input-1").innerHTML = input_winningNumbers[1];
+            document.getElementById("input-2").innerHTML = input_winningNumbers[2];
+            document.getElementById("input-3").innerHTML = input_winningNumbers[3];
+            document.getElementById("input-4").innerHTML = input_winningNumbers[4];
         }
 
+        function fill_input_lucky_circle() {
+            document.getElementById("input-5").innerHTML = input_luckyNumber;
+        }
+
+        function fill_random_circles() {
+            document.getElementById("random-0").innerHTML = random_winningNumbers[0];
+            document.getElementById("random-1").innerHTML = random_winningNumbers[1];
+            document.getElementById("random-2").innerHTML = random_winningNumbers[2];
+            document.getElementById("random-3").innerHTML = random_winningNumbers[3];
+            document.getElementById("random-4").innerHTML = random_winningNumbers[4];
+            document.getElementById("random-5").innerHTML = random_luckyNumber;
+        }
 
         /* ------------------------------------------------------------------------------------- */
         // Generate a set of random numbers with no repeats (with no duplicates)

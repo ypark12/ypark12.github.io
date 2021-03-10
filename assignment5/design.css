@@ -4,7 +4,7 @@
 
 #heading {
     padding: 20px 60px;
-    font-size: 4vw;
+    font-size: 6vw;
     text-align: center;
     font-weight: 700;
     color: #000000;
@@ -24,4 +24,29 @@
     width: 100px;
     height: 100px;
     margin-bottom: 20px;
+}
+
+.number-circle {
+    margin: 5px;
+    width: 8vw;
+    height: 8vw;
+    border-radius: 50%;
+    background-color: #ffffff;
+    line-height: 8vw;
+    font-size: 3vw;
+    border: 2px solid #000000;
+    font-weight: 700;
+}
+
+.flex-container-inline {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    text-align: center;
+    align-content: center;
+}
+
+#input-5, #random-5 {
+    background-color: #006400;
+    color: #ffffff;
 }
