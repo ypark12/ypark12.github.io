@@ -7,7 +7,7 @@
     font-size: 6vw;
     text-align: center;
     font-weight: 700;
-    color: #000000;
+    color: #ff4646;
     margin: auto;
 }
 
@@ -34,8 +34,9 @@
     background-color: #ffffff;
     line-height: 8vw;
     font-size: 3vw;
-    border: 2px solid #000000;
+    border: 2px solid #ff4646;
     font-weight: 700;
+    color: #ff4646;
 }
 
 .flex-container-inline {
@@ -44,9 +45,15 @@
     justify-content: space-evenly;
     text-align: center;
     align-content: center;
+    margin-bottom: 20px;
 }
 
 #input-5, #random-5 {
-    background-color: #006400;
+    border: 2px solid #ff4646;
+    background-color: #ff4646;
     color: #ffffff;
+}
+
+#prize-box {
+    font-size: 8vw;
 }

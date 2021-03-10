@@ -32,8 +32,9 @@
             <div id="random-5" class="number-circle"></div> 
         </div>
 
-        <div id="prize-box" class="div-box">
-            <p id="prize">Prize</p>
+        <div id="prize-box">
+            <p>YOU HAVE WON</p>
+            <p id="prize" style="color: #ff4646"></p>
         </div>
 
     </div>
@@ -50,8 +51,6 @@
         /* ------------------------------------------------------------------------------------- */
         // Onload: Generate random lottery numbers
         window.onload = function() {
-            get_winning_numbers();
-            get_lucky_number();
             // Random winning numbers
             for (i = 0; i < 5; i++) {
                 flag = false;
@@ -62,7 +61,7 @@
                 }
             }
             random_winningNumbers.sort(function(a, b) { return a-b; });
-            console.log(random_winningNumbers)
+
             // Random lucky number
             flag = false;
             while (!flag) {
@@ -70,6 +69,9 @@
                 flag = check_duplicate(random_winningNumbers, random_luckyNumber);
                 if (flag) { break; }
             }
+
+            get_winning_numbers();
+            get_lucky_number();
 
             fill_random_circles()
         }
@@ -81,7 +83,7 @@
         /* ------------------------------------------------------------------------------------- */
         // Prompt user to enter winning numbers
         function get_winning_numbers() {
-            var input = prompt("Enter the winning numbers.", "");
+            var input = prompt("Enter five numbers from 1 to 48 with no repeats, each separated by a space.", "");
 
             input_winningNumbers = input.split(' ').map(function(item) {
                 return parseInt(item, 10);
@@ -96,7 +98,7 @@
         }
 
         function get_lucky_number() {
-            var input = prompt("Enter the lucky number.", "");
+            var input = prompt("Enter any number from 1 to 18.", "");
 
             input_luckyNumber = parseInt(input);
 
