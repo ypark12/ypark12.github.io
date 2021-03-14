@@ -1,8 +1,33 @@
 <!DOCTYPE html>
 <head>
-
-
+    <meta charset="utf-8">
+    <title>Extracredit1</title>
+    <link rel="stylesheet" href="https://mooozi.github.io/lectures/css/reset.css">
+    <link rel="stylesheet" href="https://mooozi.github.io/lectures/css/font.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./design.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    
+    <form>
+        <input type="text" name="txt1" id="txt1">
+        <input type="button" name="button" id="jump" value="JUMP >" onclick="jump_txt()">
+        <input type="text" name="txt2" id="txt2">
+    </form>
+
+    <script>
+        var flag = true;
+        function jump_txt() {
+            if (flag) {
+                document.getElementById("jump").value = "< JUMP"
+                flag = false;
+            } else {
+                document.getElementById("jump").value = "JUMP >"
+                flag = true;
+            }
+            var temp = document.getElementById("txt1").value;
+            document.getElementById("txt1").value = document.getElementById("txt2").value;
+            document.getElementById("txt2").value = temp;
+        }
+    </script>
 </body>
