@@ -2,9 +2,22 @@ body {
     text-align: center;
     padding: 70px 0;
 }
+
 header h1 {
-    font-size: 60px;
+    font-size: 40px;
     font-weight: 700;
     color: #123f93;
     margin-bottom: 50px;
+}
+
+input[type="text"], input[type="button"] {
+    text-align: center;
+    width: 100px;
+    line-height: 30px;
+    border-radius: 3px;
+    margin: 0 20px;
+}
+
+input[type="text"] {
+    border-color: #123f93;
 }
