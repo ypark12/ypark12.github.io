@@ -9,6 +9,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
+    <header>
+        <h1>Jump to the Left and to the Right</h1>
+    </header>
     <form>
         <input type="text" name="txt1" id="txt1">
         <input type="button" name="button" id="jump" value="JUMP >" onclick="jump_txt()">
@@ -18,13 +21,30 @@
     <script>
         var flag = true;
         function jump_txt() {
-            if (flag) {
+            if (flag && document.getElementById("txt1").value != "") {
                 document.getElementById("jump").value = "< JUMP"
                 flag = false;
-            } else {
+            } else if (!flag && document.getElementById("txt2").value != "") {
                 document.getElementById("jump").value = "JUMP >"
                 flag = true;
+            } 
+            // edge case1:  if there is no value in the left textbox, 
+            //              but JUMP points to right and there is a value in the right textbox,
+            //              then make JUMP points to left and there remains a value in the right textbox.
+            else if (flag && document.getElementById("txt2").value != "") {
+                document.getElementById("jump").value = "< JUMP"
+                flag = false;
+                return;
+            } 
+            // edge case2:  if there is no value in the right textbox, 
+            //              but JUMP points to left and there is a value in the leftt textbox,
+            //              then make JUMP points to right and there remains a value in the left textbox.
+            else if (!flag && document.getElementById("txt1").value != "") {
+                document.getElementById("jump").value = "JUMP >"
+                flag = true;
+                return;
             }
+
             var temp = document.getElementById("txt1").value;
             document.getElementById("txt1").value = document.getElementById("txt2").value;
             document.getElementById("txt2").value = temp;
