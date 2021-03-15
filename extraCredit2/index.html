@@ -12,15 +12,54 @@
     <header>
         <h1>Checkbox Challenge</h1>
     </header>
-    <form>
-        <input type="checkbox" id="check1">
-        <input type="checkbox" id="check2">
-        <input type="checkbox" id="check3">
-        <input type="checkbox" id="check4">
-        <input type="checkbox" id="check5">
-    </form>
+    <div id="wrap">
+        <form>
+            <input type="checkbox" id="check1" onclick="check_all(this)"><label for="check1" id="toggle_label">Check All</label>
+            <div><input type="checkbox" id="check2" name="box" onclick="validate_label()"></div>
+            <div><input type="checkbox" id="check3" name="box" onclick="validate_label()"></div>
+            <div><input type="checkbox" id="check4" name="box" onclick="validate_label()"></div>
+            <div><input type="checkbox" id="check5" name="box" onclick="validate_label()"></div>
+        </form>
+    </div>
 
     <script>
-        
+        function check_all(toggle) {
+            if(!toggle.checked) 
+            {
+                document.getElementById("toggle_label").innerHTML = "Check All";
+                boxes = document.getElementsByName('box');
+                numBoxes = boxes.length;
+                for (var i = 0; i < numBoxes; i++) 
+                {
+                    boxes[i].checked = toggle.checked;
+                }
+            } 
+            else 
+            {
+                document.getElementById("toggle_label").innerHTML = "Uncheck All";
+                boxes = document.getElementsByName('box');
+                numBoxes = boxes.length;
+                for (var i = 0; i < numBoxes; i++) 
+                {
+                    boxes[i].checked = toggle.checked;
+                }
+            }
+        }
+
+        function validate_label(toggle) {
+            boxes = document.getElementsByName('box');
+            numBoxes = boxes.length;
+            var check1 = document.getElementById("check1");
+            for (var i = 0; i < numBoxes; i++)
+            {
+                check1.checked = boxes[i].checked;
+                if (!boxes[i].checked) {
+                    document.getElementById("toggle_label").innerHTML = "Check All";
+                    return;
+                }
+            }
+            document.getElementById("toggle_label").innerHTML = "Uncheck All";
+        }
+
     </script>
 </body>

@@ -10,14 +10,12 @@ header h1 {
     margin-bottom: 50px;
 }
 
-input[type="text"], input[type="button"] {
+#wrap {
+    display: flex;
+    flex-direction: column;
     text-align: center;
-    width: 100px;
-    line-height: 30px;
-    border-radius: 3px;
-    margin: 0 20px;
 }
 
-input[type="text"] {
-    border-color: #123f93;
+input[type="checkbox"] {
+    margin: 5px 0;
 }
