@@ -14,12 +14,11 @@
 <body>
     <div id="container">
         <h1 id="heading">Joe's Part 2</h1>
-        <div id="errMessage" style="text-align: center; visibility: hidden;">Please select an item(s) to order.</div>
+        <div id="errMessage" style="text-align: center; visibility: hidden; color: #ff0000;">Please select an item(s) to order.</div>
 
         <div id="item-wrap">
             <form
                 name = "data"
-                method = "post"
                 onsubmit = "return validate()"
             >
 
@@ -95,20 +94,22 @@
                 }
                 var item_list = [];
                 var arr_quantities = quantity;
+                var total_price = 0;
                 for (var i = 0; i < arr_items.length; i++) {
                     if (arr_items[i].checked) {
                         var num = parseFloat(document.getElementById(arr_quantities[i].id).value);
                         var price = parseFloat(arr_items[i].value) * num;
                         var item_name = arr_items[i].id;
                         var ordered_string = "You have ordered " + num + " " + item_name + ". The price is $" + price + ".\n";
-                        console.log(ordered_string);
                         item_list.push(ordered_string);
+                        total_price += price;
                     }
                 }
                 var print_string = "";
                 for (var i = 0; i < item_list.length; i++) {
                     print_string += item_list[i];
                 }
+                print_string += "The total price is $" + total_price + ".";
                 alert(print_string);
                 return true;
             }
