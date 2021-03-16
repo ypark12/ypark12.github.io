@@ -13,12 +13,106 @@
 
 <body>
     <div id="container">
-        <h1 id="heading">Joe's Part2</h1>
+        <h1 id="heading">Joe's Part 2</h1>
+        <div id="errMessage" style="text-align: center; visibility: hidden;">Please select an item(s) to order.</div>
+
+        <div id="item-wrap">
+            <form
+                name = "data"
+                method = "post"
+                onsubmit = "return validate()"
+            >
+
+                <div class="item-container">
+                    <input type="checkbox" name="item" id="hotdogs" value="3.25" class="item">
+                    <label for="hotdog">Hotdogs: $3.25</label>
+                    <select name="quantity" id="hotdog-quantity" class="select-btn">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                        <option value="20">20</option>
+                    </select>
+                </div>
+
+                <div class="item-container">
+                    <input type="checkbox" name="item" id="fries" value="2.00" class="item">
+                    <label for="fries">French Fries: $2.00</label>
+                    <select name="quantity" id="fries-quantity" class="select-btn">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                        <option value="20">20</option>
+                    </select>
+                </div>
+
+                <div class="item-container">
+                    <input type="checkbox" name="item" id="drinks" value="1.50" class="item">
+                    <label for="drinks">Drinks: $1.50</label>
+                    <select name="quantity" id="drinks-quantity" class="select-btn">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                        <option value="20">20</option>
+                    </select>
+                </div>
+                <input type="submit" value="Submit Order" class="submit-btn">
+            </form>
+        </div>
+        
     </div>
     
 
     <script type="text/javascript">
-        
+
+        function validate() {
+            document.getElementById("errMessage").style.visibility = "hidden";
+            with (document.data) {
+                var err = false;
+                var arr_items = item;
+
+                // Check if no item is checked; if none is selected, return false.
+                for (var i = 0; i < arr_items.length; i++) {
+                    if (arr_items[i].checked) {
+                        err = true;
+                        break;
+                    }
+                }
+                if (!err) {
+                    document.getElementById("errMessage").style.visibility = "visible";
+                    return false;
+                }
+                var item_list = [];
+                var arr_quantities = quantity;
+                for (var i = 0; i < arr_items.length; i++) {
+                    if (arr_items[i].checked) {
+                        var num = parseFloat(document.getElementById(arr_quantities[i].id).value);
+                        var price = parseFloat(arr_items[i].value) * num;
+                        var item_name = arr_items[i].id;
+                        var ordered_string = "You have ordered " + num + " " + item_name + ". The price is $" + price + ".\n";
+                        console.log(ordered_string);
+                        item_list.push(ordered_string);
+                    }
+                }
+                var print_string = "";
+                for (var i = 0; i < item_list.length; i++) {
+                    print_string += item_list[i];
+                }
+                alert(print_string);
+                return true;
+            }
+        }
     </script>
 
 </body>

@@ -7,67 +7,52 @@
 
 #heading {
     padding: 20px 60px;
-    font-size: 4vw;
+    font-size: 70px;
     text-align: center;
     font-weight: 700;
     color: #000000;
     margin: auto;
 }
 
-.flex-container {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
+#errMessage {
+    margin-bottom: 30px;
+}
+
+
+#item-wrap {
+    max-width: 360px;
     margin: auto;
-    flex-wrap: wrap;
 }
 
-.flex-container-column {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+.item-container {
+    margin: 20px 0;
+    float: initial;
+    overflow: auto;
 }
 
-.flex-container-inline {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    margin: 0px 40px 40px 40px;
+.item {
+    float: inline-start;
+}
+.item::after {
+    content: "";
+    clear: both;
+    display: table;
 }
 
-.number-heading {
-    font-size: 3vw;
-    font-family: 'Courier New', Courier, monospace;
-    font-weight: 600;
+.select-btn {
+    float: right;
+}
+.select-btn::after {
+    content: "";
+    clear: both;
+    display: table;
 }
 
-.input-box {
-    width: 20vw;
-    height: 20vw;
-    border-radius: 10vw;
-    text-align: center;
-    font-size: 3vw;
-    border-width: 4px;
-    outline: none;
+.submit-btn {
+    float: right;
 }
-
-#validate-button {
-    width: 12vw;
-    height: 12vw;
-    border-radius: 6vw;
-    border-color: #000000;
-    padding: 0;
-    background-color: #000000;
-    color: #ffffff;
-    text-transform: uppercase;
-    outline: none;
-    font-size: 2vw;
-}
-
-#result {
-    margin-top: 10px;
-    text-transform: uppercase;
-    font-weight: 700;
-    color: #ff0000;
-    font-size: 3vw;
+.submit-btn::after {
+    content: "";
+    clear: both;
+    display: table;
 }
