@@ -5,50 +5,55 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Jade Delight</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <body>
     <script language="javascript">
+        function MenuItem(name, cost)
+        {
+            this.name = name;
+            this.cost=cost;
+        }
 
-    function MenuItem(name, cost)
-    {
-        this.name = name;
-        this.cost=cost;
-    }
+        menuItems = new Array(
+            new MenuItem("Chicken Chop Suey", 4.5),
+            new MenuItem("Sweet and Sour Pork", 6.25),
+            new MenuItem("Shrimp Lo Mein", 5.25),
+            new MenuItem("Moo Shi Chicken", 6.5),
+            new MenuItem("Fried Rice", 2.35)
+        );
 
-    menuItems = new Array(
-        new MenuItem("Chicken Chop Suey", 4.5),
-        new MenuItem("Sweet and Sour Pork", 6.25),
-        new MenuItem("Shrimp Lo Mein", 5.25),
-        new MenuItem("Moo Shi Chicken", 6.5),
-        new MenuItem("Fried Rice", 2.35)
-    );
-
-    function makeSelect(name, minRange, maxRange)
-    {
-        var t= "";
-        t = "<select name='" + name + "' size='1'>";
-        for (j=minRange; j<=maxRange; j++)
-        t += "<option>" + j + "</option>";
-        t+= "</select>"; 
-        return t;
-    }
+        function makeSelect(name, minRange, maxRange)
+        {
+            var t= "";
+            t = "<select name='" + name + "' size='1'>";
+            for (j=minRange; j<=maxRange; j++)
+                t += "<option>" + j + "</option>";
+            t+= "</select>"; 
+            return t;
+        }
     </script>
 
     <h1>Jade Delight</h1>
 
-    <form>
+    <form
+        name = "data"
+        onsubmit = "return validate()"
+    >
         <p>First Name: <input type="text"  name='fname' /></p>
         <p>Last Name*:  <input type="text"  name='lname' /></p>
-        <p>Street: <input type="text"  name='street' /></p>
-        <p>City: <input type="text"  name='city' /></p>
+        <div id="delivery_address" style="display: none;">
+            <p>Street: <input type="text"  name='street' /></p>
+            <p>City: <input type="text"  name='city' /></p>
+        </div>
+
         <p>Phone*: <input type="text"  name='phone' /></p>
         <p> 
-            <input type="radio"  name="p_or_d" value = "pickup" checked="checked"/>Pickup  
-            <input type="radio"  name='p_or_d' value = 'delivery'/>
-            Delivery
+            <input type="radio"  name="p_or_d" value = "pickup" checked="checked"/> Pickup  
+            <input type="radio"  name='p_or_d' value = 'delivery'/> Delivery
         </p>
-        
+
         <table border="0" cellpadding="3">
             <tr>
                 <th>Select Item</th>
@@ -58,7 +63,6 @@
             </tr>
 
             <script language="javascript">
-
                 var s = "";
                 for (i=0; i< menuItems.length; i++)
                 {
@@ -78,9 +82,51 @@
 
         <p>Total: $ <input type="text"  name='total' id="total" /></p>
 
-        <input type = "button" value = "Submit Order" />
+        <input type = "submit" value = "Submit Order" />
 
     </form>
+
+    <script>
+        // Pickup or Delivery: 
+        window.onload=$("[name='p_or_d']").click(function() {
+            if ($(this).val() == 'pickup') {
+                $("[name='p_or_d'][value='pickup']").attr('checked', true);
+                $("[name='p_or_d'][value='delivery']").attr('checked', false);
+                document.getElementById("delivery_address").style.display = "none";
+            } else {
+                $("[name='p_or_d'][value='pickup']").attr('checked', false);
+                $("[name='p_or_d'][value='delivery']").attr('checked', true);
+                document.getElementById("delivery_address").style.display = "block";
+            }
+        });
+
+        // When a user selects a quantity: 
+        window.onload=$('select').on('change', function() {
+            with (document.data) {
+                var arr_cost = cost;
+                var subtotal_price = 0;
+
+                for (var i = 0; i < menuItems.length; i++) {
+                    var temp = "quan" + i;
+                    var menu_item = $("[name='" + temp + "']");
+
+                    if (menu_item.val() != 0) {
+                        var item_cost = parseInt(menu_item.val()) * menuItems[i].cost;
+                        cost[i].value = item_cost.toFixed(2);
+                    } else {
+                        cost[i].value = "";
+                    }
+
+                    subtotal_price += parseFloat(cost[i].value) || 0;
+                }
+                
+                subtotal.value = parseFloat(subtotal_price).toFixed(2);
+                tax.value = parseFloat(subtotal_price * 0.0625).toFixed(2);
+                total.value = (parseFloat(tax.value) + parseFloat(subtotal.value)).toFixed(2);
+            }
+        });
+
+    </script>
 </body>
 
 </html>
