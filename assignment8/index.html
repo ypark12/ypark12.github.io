@@ -180,7 +180,8 @@
 
         function print_order(delivery_time) {
             var displayWindow = window.open('','_blank', 'toolbar=no, status=no, width=600, height=400');
-            var message = "<div><p style='font-size: 20px; font-weight: 700;'>Thank you for your order.</p></div>";
+            var message = "<div style= 'position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);  text-align: center;'>"
+            message += "<div><p style='font-size: 20px; font-weight: 700;'>Thank you for your order.</p></div>";
             message += "<div>You have ordered: </div>";
 
             for (var i = 0; i < menuItems.length; i++) {
@@ -195,7 +196,7 @@
             message += "<div>The estimated " + $("[name='p_or_d']:checked").val() + " time is " + delivery_time + " minutes.</div>";
             message += "<div>The total price is $" + total.value + ".</div>";
             message += "<p>Always yours, </p>";
-            message += "<p style='font-size: 16px; font-weight: 700;'>Jade Delight</p>";
+            message += "<p style='font-size: 16px; font-weight: 700;'>Jade Delight</p></div>";
             console.log(message);
             displayWindow.document.writeln(message);
         }
