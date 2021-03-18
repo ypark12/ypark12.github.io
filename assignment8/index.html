@@ -40,6 +40,7 @@
     <form
         name = "data"
         onsubmit = "return validate()"
+        
     >
         <p>First Name: <input type="text"  name='fname' /></p>
         <p>Last Name*:  <input type="text"  name='lname' /></p>
@@ -116,15 +117,90 @@
                     } else {
                         cost[i].value = "";
                     }
-
                     subtotal_price += parseFloat(cost[i].value) || 0;
                 }
                 
                 subtotal.value = parseFloat(subtotal_price).toFixed(2);
                 tax.value = parseFloat(subtotal_price * 0.0625).toFixed(2);
                 total.value = (parseFloat(tax.value) + parseFloat(subtotal.value)).toFixed(2);
+
+                if (total.value == 0) {
+                    subtotal.value = "";
+                    tax.value = "";
+                    total.value = "";
+                }
             }
         });
+
+        function validate() {
+            // Check if last name and phone numbers are entered:
+            var last_name =  $("[name='lname']").val();
+            if (last_name == "" ) {
+                alert("Please enter your last name.");
+                return false;
+            }
+            var regex=/^[a-zA-Z]+$/;
+            if (!last_name.match(regex))
+            {
+                alert("Please enter alphabet letters for your last name.");
+                return false;
+            }
+
+            var phone_number = $("[name='phone']").val();
+            if (phone_number == "") {
+                alert("Please enter your phone number.");
+                return false;
+            }
+
+            // Check phone number validity: 
+            // 1. is input a number
+            if (isNaN(phone_number)) {
+                alert("Please enter numbers for your phone number.\nDo not put hyphens (-) between your numbers.");
+                return false;
+            }
+            // 2. is a phone number valid in the US?: 10 digits
+            if (phone_number.toString().length != 10) {
+                alert("Please enter a valid US phone number.\nThe numbers must be 10 digits.");
+                return false;
+            }
+            
+            var delivery_time = 0;
+            if ($("[name='p_or_d']:checked").val() == "pickup") {
+                delivery_time = 15;
+            } else {
+                delivery_time = 30;
+                if ($("[name='street']").val() == "" || $("[name='city']").val() == "") {
+                    alert("Please enter your Street and City address.");
+                    return false;
+                }
+            }
+            
+            if ($("[name='total']").val() == "") {
+                alert("You must order at least one item to submit order.");
+                return false;
+            }
+
+            var displayWindow = window.open('','_blank', 'toolbar=no,status=no,width=800,height=400');
+            var message = "<div>Thank you for your order.</div>";
+            message += "<div>You have ordered: </div>";
+
+            for (var i = 0; i < menuItems.length; i++) {
+                    var temp = "quan" + i;
+                    var menu_item = $("[name='" + temp + "']");
+
+                    if (menu_item.val() != 0) {
+                        message += "<div>" + menu_item.val() + " " + menuItems[i].name + "</div>";
+                    }
+            }
+
+            message += "<div>The estimated " + $("[name='p_or_d']:checked").val() + " time is " + delivery_time + " minutes.</div>";
+            message += "<div>The total price is $" + total.value + ".</div>";
+            console.log(message);
+            displayWindow.document.writeln(message);
+
+            return true;
+        }
+
 
     </script>
 </body>
