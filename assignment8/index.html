@@ -132,7 +132,7 @@
             }
         });
 
-        function validate() {
+        function name_check() {
             // Check if last name and phone numbers are entered:
             var last_name =  $("[name='lname']").val();
             if (last_name == "" ) {
@@ -145,7 +145,10 @@
                 alert("Please enter alphabet letters for your last name.");
                 return false;
             }
+            return true;
+        }
 
+        function number_check() {
             var phone_number = $("[name='phone']").val();
             if (phone_number == "") {
                 alert("Please enter your phone number.");
@@ -163,6 +166,43 @@
                 alert("Please enter a valid US phone number.\nThe numbers must be 10 digits.");
                 return false;
             }
+
+            return true;
+        }
+
+        function order_check() {
+            if ($("[name='total']").val() == "") {
+                alert("You must order at least one item to submit order.");
+                return false;
+            }
+            return true;
+        }
+
+        function print_order(delivery_time) {
+            var displayWindow = window.open('','_blank', 'toolbar=no, status=no, width=600, height=400');
+            var message = "<div><p style='font-size: 20px; font-weight: 700;'>Thank you for your order.</p></div>";
+            message += "<div>You have ordered: </div>";
+
+            for (var i = 0; i < menuItems.length; i++) {
+                    var temp = "quan" + i;
+                    var menu_item = $("[name='" + temp + "']");
+
+                    if (menu_item.val() != 0) {
+                        message += "<div>" + menu_item.val() + " " + menuItems[i].name + "</div>";
+                    }
+            }
+            message += "<br>";
+            message += "<div>The estimated " + $("[name='p_or_d']:checked").val() + " time is " + delivery_time + " minutes.</div>";
+            message += "<div>The total price is $" + total.value + ".</div>";
+            message += "<p>Always yours, </p>";
+            message += "<p style='font-size: 16px; font-weight: 700;'>Jade Delight</p>";
+            console.log(message);
+            displayWindow.document.writeln(message);
+        }
+
+        function validate() {
+            if (!name_check()) return false;
+            if (!number_check()) return false;
             
             var delivery_time = 0;
             if ($("[name='p_or_d']:checked").val() == "pickup") {
@@ -175,28 +215,9 @@
                 }
             }
             
-            if ($("[name='total']").val() == "") {
-                alert("You must order at least one item to submit order.");
-                return false;
-            }
+            if (!order_check()) return false;
 
-            var displayWindow = window.open('','_blank', 'toolbar=no,status=no,width=800,height=400');
-            var message = "<div>Thank you for your order.</div>";
-            message += "<div>You have ordered: </div>";
-
-            for (var i = 0; i < menuItems.length; i++) {
-                    var temp = "quan" + i;
-                    var menu_item = $("[name='" + temp + "']");
-
-                    if (menu_item.val() != 0) {
-                        message += "<div>" + menu_item.val() + " " + menuItems[i].name + "</div>";
-                    }
-            }
-
-            message += "<div>The estimated " + $("[name='p_or_d']:checked").val() + " time is " + delivery_time + " minutes.</div>";
-            message += "<div>The total price is $" + total.value + ".</div>";
-            console.log(message);
-            displayWindow.document.writeln(message);
+            print_order(delivery_time);
 
             return true;
         }
