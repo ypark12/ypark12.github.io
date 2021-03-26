@@ -24,7 +24,6 @@
         $(document).on('change', "#songs", function() {
             var temp = this.value;
             if (temp == 'All') {
-                $("p").css('display', 'inherit');
                 $(".song").css('display', 'inherit');
                 return;
             }
@@ -34,8 +33,6 @@
                 } else {
                     $(this).css('display', 'none');
                 }
-                $("p").css('display', 'none');
-                $(".title").css('display', 'inherit');
             })
         });
 
@@ -55,8 +52,8 @@
         }
     </script>
 
-    <h1>JSON Song List</h1>
-    <a href="index2.html">Go to Version2</a>
+    <h1>JSON Song List V2</h1>
+    <a href="index.html">Go to the Original</a>
 
     <form>
         <div id=select-container>
