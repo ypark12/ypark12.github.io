@@ -1,0 +1,62 @@
+[
+    {
+        "title": "Hey Jude",
+        "artist": "The Beatles",
+        "genre": "Rock",
+        "released": 1968
+    },
+    {
+        "title": "Come Together",
+        "artist": "The Beatles",
+        "genre": "Rock",
+        "released": 1969
+    },
+    {
+        "title": "Time is Running Out",
+        "artist": "Muse",
+        "genre": "Rock",
+        "released": 2003
+    },
+    {
+        "title": "I Wonder",
+        "artist": "Kanye West",
+        "genre": "Hip Hop",
+        "released": 2003
+    },
+    {
+        "title": "Stronger",
+        "artist": "Kanye West",
+        "genre": "Hip Hop",
+        "released": 2007
+    },
+    {
+        "title": "Empire State of Mind",
+        "artist": "Jay Z",
+        "genre": "Hip Hop",
+        "released": 2009
+    },
+    {
+        "title": "Fake Love",
+        "artist": "BTS",
+        "genre": "KPOP",
+        "released": 2018
+    },
+    {
+        "title": "Dynamite",
+        "artist": "BTS",
+        "genre": "KPOP",
+        "released": 2020
+    },
+    {
+        "title": "Savage Love",
+        "artist": "BTS",
+        "genre": "KPOP",
+        "released": 2020
+    },
+    {
+        "title": "How You Like That",
+        "artist": "Blackpink",
+        "genre": "KPOP",
+        "released": 2020
+    }
+]
