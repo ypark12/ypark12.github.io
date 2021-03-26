@@ -21,8 +21,20 @@
             });
         })
         
+        // Genre functionality
         $(document).on('change', "#songs", function() {
-            console.log(this.value);
+            var temp = this.value;
+            if (temp == 'All') {
+                $(".song").css('display', 'inherit');
+                return;
+            }
+            $('.song').each(function() {
+                if ($(this).hasClass(temp)) {
+                    $(this).css('display', 'inherit');
+                } else {
+                    $(this).css('display', 'none');
+                }
+            })
         });
 
         function populateJSON(json) {
@@ -32,10 +44,10 @@
                 $('#song-container').append("<div class=song>");
 
                 var currDiv = $(".song:eq('"+ i +"')");
-                $(currDiv).append("<p>" + "Title: " + song.title + "</p>");
-                $(currDiv).append("<p>" + "Artist: " + song.artist + "</p>");
-                $(currDiv).append("<p>" + "Genre: " + song.genre + "</p>");
-                $(currDiv).append("<p>" + "Year: " + song.released+ "</p>");
+                $(currDiv).append("<p style='color: #ecea60; font-family: Times, serif; font-size: 30px;'>" + song.artist + "</p>");
+                $(currDiv).append("<p>" + song.title + "</p>");
+                $(currDiv).append("<p>" + song.released+ "</p>");
+                $(currDiv).append("<p style='color: #ecea60;'>" + song.genre + "</p>");
                 $(currDiv).addClass(song.genre);
             }
         }
@@ -44,12 +56,15 @@
     <h1>JSON Song List</h1>
 
     <form>
-        <label for="songs">Choose a genre: </label>
-        <select name="songs" id="songs">
-            <option value="Hip-Hop">Hip-Hop</option>
-            <option value="KPOP">KPOP</option>
-            <option value="Rock">Rock</option>
-        </select>
+        <div id=select-container>
+            <label for="songs">Genre: </label>
+            <select name="songs" id="songs">
+                <option value="All">All</option>
+                <option value="Hip-Hop">Hip-Hop</option>
+                <option value="KPOP">KPOP</option>
+                <option value="Rock">Rock</option>
+            </select>
+        </div>
 
         <div id=song-container>
         </div>
