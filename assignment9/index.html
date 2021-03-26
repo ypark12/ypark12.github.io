@@ -17,11 +17,15 @@
     <script language="javascript">
         $(document).ready(function() {
             $.getJSON("songlist.json", function(json) {
-                printJSON(json);
+                populateJSON(json);
             });
         })
         
-        function printJSON(json) {
+        $(document).on('change', "#songs", function() {
+            console.log(this.value);
+        });
+
+        function populateJSON(json) {
             var jsonLength = json.length;
             for (var i = 0; i < jsonLength; i++) {
                 var song = json[i];
@@ -32,9 +36,7 @@
                 $(currDiv).append("<p>" + "Artist: " + song.artist + "</p>");
                 $(currDiv).append("<p>" + "Genre: " + song.genre + "</p>");
                 $(currDiv).append("<p>" + "Year: " + song.released+ "</p>");
-                // $(currDiv).append("Artist: " + song.artist);
-                // $(currDiv).append("Genre: " + song.genre);
-                // $(currDiv).append("Year: " + song.released);
+                $(currDiv).addClass(song.genre);
             }
         }
     </script>
@@ -42,8 +44,14 @@
     <h1>JSON Song List</h1>
 
     <form>
-        <div id=song-container>
+        <label for="songs">Choose a genre: </label>
+        <select name="songs" id="songs">
+            <option value="Hip-Hop">Hip-Hop</option>
+            <option value="KPOP">KPOP</option>
+            <option value="Rock">Rock</option>
+        </select>
 
+        <div id=song-container>
         </div>
     </form>
 
