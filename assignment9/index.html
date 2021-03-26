@@ -3,20 +3,48 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Jade Delight</title>
+    <meta charset="utf-8">
+    <title>Assignment9</title>
+    <link rel="stylesheet" href="https://mooozi.github.io/lectures/css/reset.css">
+    <!-- <link rel="stylesheet" href="https://mooozi.github.io/lectures/css/font.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="design.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <body>
     <script language="javascript">
+        $(document).ready(function() {
+            $.getJSON("songlist.json", function(json) {
+                printJSON(json);
+            });
+        })
         
+        function printJSON(json) {
+            var jsonLength = json.length;
+            for (var i = 0; i < jsonLength; i++) {
+                var song = json[i];
+                $('#song-container').append("<div class=song>");
+
+                var currDiv = $(".song:eq('"+ i +"')");
+                $(currDiv).append("<p>" + "Title: " + song.title + "</p>");
+                $(currDiv).append("<p>" + "Artist: " + song.artist + "</p>");
+                $(currDiv).append("<p>" + "Genre: " + song.genre + "</p>");
+                $(currDiv).append("<p>" + "Year: " + song.released+ "</p>");
+                // $(currDiv).append("Artist: " + song.artist);
+                // $(currDiv).append("Genre: " + song.genre);
+                // $(currDiv).append("Year: " + song.released);
+            }
+        }
     </script>
 
     <h1>JSON Song List</h1>
 
     <form>
+        <div id=song-container>
 
+        </div>
     </form>
 
     <script>
