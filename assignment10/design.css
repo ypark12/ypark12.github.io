@@ -20,31 +20,3 @@ p {
     text-align: center;
     line-height: 40px;
 }
-
-#song-container {
-    margin-top: 2rem;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-}
-
-.song {
-    margin: 1rem 0;
-    width: 300px;
-    height: 300px;
-
-    display: inherit;
-    align-items: center;
-    justify-content: center;
-    flex-direction: inherit;
-
-    background: #3a3a3a;
-}
-
-#select-container {
-    position: relative;
-    text-align: right;
-    margin-top: 2rem;
-}

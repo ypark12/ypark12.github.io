@@ -1,6 +1,6 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
     <meta charset="utf-8">
@@ -13,12 +13,24 @@
 </head>
 
 <body>
-    <script language="javascript">
-        
+    <script>
+        $(document).ready(function() {
+            $.ajax({
+                type: "POST",
+                url: "https://api.openweathermap.org/data/2.5/onecall?lat=71.0589&lon=42.3601&exclude=hourly,daily&appid=6e477249e2b1e0f4d6461a66a1947eaa",
+                dataType: "json",
+                success: function(result, status, xhr) {
+                    document.getElementById("data").innerHTML = JSON.stringify(result);
+                },
+                error: function(xhr, status, error) {
+                    alert("ERROR")
+                }
+            });
+        });
     </script>
 
     <h1>API Fun!</h1>
-
+    <div id="data">Loading...</div>
 </body>
 
 </html>
