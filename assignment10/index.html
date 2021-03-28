@@ -14,36 +14,26 @@
 
 <body>
     <script>
-        $(document).ready(function () {
-            getWeather();
-            setInterval(function () {
-                getWeather();
-            }, 1000);
-        });
-
-        function getWeather() {
+        function getMeaning() {
+            var word_id = $("input[name=word_input]").val();
             $.ajax({
-                type: "POST",
-                url: "https://api.openweathermap.org/data/2.5/onecall?lat=" + "37.5326" + "&lon=" + "127.0246" +
-                    "&units=metric&exclude=hourly,daily&appid=23c720e5bf1d954c4f808b8d4f579546",
-                dataType: "json",
+                "async": true,
+                "crossDomain": true,
+                "url": "https://wordsapiv1.p.rapidapi.com/words/" + word_id + "/definitions",
+                "method": "GET",
+                "headers": {
+                    "x-rapidapi-key": "64ec8090e9mshead1b82624ea38bp13f022jsn4cab11914ca7",
+                    "x-rapidapi-host": "wordsapiv1.p.rapidapi.com"
+                },
                 success: function (result, status, xhr) {
-                    console.log("getting the data");
-                    var timezone = result["timezone"];
-                    var date = new Date(result["current"]["dt"] * 1000);
-                    var hours = date.getHours();
-                    var minutes = date.getMinutes();
-                    var seconds = date.getSeconds();
-                    var curr_time = hours + ":" + minutes + ":" + seconds;
-                    var temperature = result["current"]["temp"] + "°C";
-                    var description = result["current"]["weather"][0]["description"];
-                    var wind = "wind: " + result["current"]["wind_speed"] + "MPH";
-
-                    $("#time").text(curr_time);
-                    $("#location").text(timezone);
-                    $("#temperature").text(temperature);
-                    $("#description").text(description);
-                    $("#wind").text(wind);
+                    $("#dictionary-container").empty();
+                    var arr_length = result["definitions"].length;
+                    for (var i = 0; i < arr_length; i++) {
+                        $("#dictionary-container").append("<div class=definition>");
+                        var currDiv = $(".definition:eq('"+ i +"')");
+                        $(currDiv).append("<p class=pos>" + i + ". " + result["definitions"][i]["partOfSpeech"] + "</p>");
+                        $(currDiv).append("<p class=meaning>" + result["definitions"][i]["definition"] + "</p>");
+                    }
                 },
                 error: function (xhr, status, error) {
                     alert("ERROR")
@@ -53,22 +43,21 @@
     </script>
 
     <h1>API Fun!</h1>
-    <h2>Seoul Weather</h2>
+    <h2>Dictionary</h2>
     <div id="main-container">
         <div id="result-container">
-            <div id="time"></div>
-            <div id="location"></div>
-            <div id="temperature"></div>
-            <div id="description"></div>
-            <div id="wind"></div>
+            <input type="text" id="word_input" name="word_input" value="">
+            <input type="button" id="search-btn" value="Search" onclick="getMeaning()">
+            <div id="dictionary-container"></div>
         </div>
         <div class="info">
-            <p>Weather API from <a href="https://openweathermap.org">openweathermap.org</a> is being used to display the
-                current weather information of Asia/Seoul.</p>
-            <p>From this open-source API, I am retrieving the current temperatue of the specfied location, wind speed, and the brief
-                description of the location's weather. </p>
-            <p>Two applications where this API would be useful are a traditional weather app, and a marine navigation
-                app which requires accurate information of the current weather.</p>
+            <p>Dictionary API from <a href="https://www.wordsapi.com/">https://www.wordsapi.com/</a> is being used to
+                display the meaning of the user input word.</p>
+            <p>From this open-source API, I am retrieving the definition and the part of speech of the word. 
+                To retrieve the data, I am using the ajax eventhandler. </p>
+            <p>Two applications where this API would be useful are a newspaper application for readers to check
+                dynamically the definitions of confusing words and English grammar education application to enhance the learning.
+            </p>
         </div>
     </div>
 

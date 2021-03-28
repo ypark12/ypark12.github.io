@@ -24,7 +24,7 @@ h2 {
 
 p {
     font-size: 14px;
-    text-align: center;
+    /* text-align: center; */
     line-height: 30px;
     margin: 1rem 0;
 }
@@ -50,29 +50,24 @@ a {
     flex-direction: inherit;
     text-align: center;
 
-    padding: 1rem 0 4rem 0;
+    padding: 1rem 0 2rem 0;
     margin-bottom: 1rem;
     width: 300px;
-    background-image: url("image.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
+    border: 1px solid #ff4646;
+}
 
-    color: #ffffff;
+#dictionary-container {
+    flex: inherit;
+    text-align: left;
+    padding: 0 1rem;
 }
 
 .info {
     border: 1px solid #543c99;
     padding: 1rem;
+    text-align: center;
 }
 
-#location {
-    margin: 1rem 0;
-    font-size: 30px;
-}
-#temperature {
-    font-size: 60px;
-    margin: 4rem 0 3rem 0;
-}
-#description {
-    margin: 1rem 0;
+#search-btn {
+
 }
