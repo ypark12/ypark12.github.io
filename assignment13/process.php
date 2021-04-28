@@ -1,22 +1,20 @@
 <!doctype html>
 <html>
+
 <head>
-<meta charset="utf-8">
-<title>Process Form</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Process Form</title>
 </head>
 
 <body>
 	<?php
-	$name = $_GET['name'];
-	$email=$_GET['email'];
-	$state = $_GET['state'];
-	
-	$str =  "Name: $name<br>";
-	$str .= "Email: $email<br>";
-	$str .= "State: $state<br>";
-	
-	echo $str;
-	mail("lisa.diorio@gmail.com", "this is a test", $str);
+	$message = $_GET['message'];
+	$email = $_GET['eaddress'];
+
+	echo $message;
+	mail($email, "Thank you for your order." , $message);
 	?>
 </body>
+
 </html>
